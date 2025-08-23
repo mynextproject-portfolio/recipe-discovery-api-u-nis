@@ -6,16 +6,15 @@ app = FastAPI()
 async def ping():
     return "pong"
 
-@app.get("recipes")
+@app.get("/recipes")
 async def get_recipes():
     return recipes
 
-@app.get("recipes/{recipe_id}")
+@app.get("/recipes/{recipe_id}")
 async def get_recipe(recipe_id: int):
     return recipes[recipe_id]
 
 
-# Example of in-memory recipe data
 recipes = [
     {
         "id": 0,
