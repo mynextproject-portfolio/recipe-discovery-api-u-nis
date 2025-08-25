@@ -3,7 +3,7 @@ from recipe import recipes, RecipeCreate, Recipe
 
 
 app = FastAPI()
-next_id = 2
+next_id = len(recipes) + 1
 
 @app.get("/ping")
 async def ping():
@@ -38,6 +38,8 @@ async def update_recipe(recipe_id: int, recipe: RecipeCreate):
             r.prepTime = recipe.prepTime
             r.cookTime = recipe.cookTime
             r.difficulty = recipe.difficulty
+            return r
+    raise HTTPException(status_code=404, detail="Recipe not found")
 
 @app.delete("/recipes/{recipe_id}", status_code=204)
 async def delete_recipe(recipe_id: int):
