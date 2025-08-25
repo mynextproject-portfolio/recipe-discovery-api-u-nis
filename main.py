@@ -13,6 +13,20 @@ async def ping():
 async def get_recipes():
     return recipes
 
+@app.get("/recipes/search", status_code=200)
+async def search_recipes(q: str):
+    if q == "":
+        return []
+    results=[]
+    q = q.lower()
+    for r in recipes:
+        if q in r.title.lower():
+            results.append(r)
+
+
+    return results
+
+
 @app.get("/recipes/{recipe_id}")
 async def get_recipe(recipe_id: int):
     for r in recipes:
