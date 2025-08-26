@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from recipe import recipes, RecipeCreate, Recipe
+from typing import Optional
 
 
 app = FastAPI()
@@ -12,6 +13,20 @@ async def ping():
 @app.get("/recipes")
 async def get_recipes():
     return recipes
+
+@app.get("/recipes/search", status_code=200)
+async def search_recipes(q: Optional[str] = None):
+    if not q or q == "":
+        return []
+    results=[]
+    q = q.lower()
+    for r in recipes:
+        if q in r.title.lower():
+            results.append(r)
+
+
+    return results
+
 
 @app.get("/recipes/{recipe_id}")
 async def get_recipe(recipe_id: int):
