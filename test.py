@@ -116,7 +116,13 @@ def test_happy_path_crud_cycle():
     recipes = response.json()
     assert any(r["title"] == "pizza" for r in recipes)
     response = client.put(f"/recipes/{recipe_id}", json={
-        "title": "pizza123",})
+        "title": "pizza123", 
+        "ingredients": ["ingredient1", "ingredient2"],
+        "steps": ["step1", "step2"],
+        "prepTime": "10 minutes",
+        "cookTime": "20 minutes",
+        "difficulty": "Easy",
+        "cuisine": "italian",})
     assert response.status_code == 200
     response = client.get(f"/recipes/{recipe_id}")
     assert response.status_code == 200
