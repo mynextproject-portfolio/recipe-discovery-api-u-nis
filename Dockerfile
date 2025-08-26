@@ -5,7 +5,7 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Install FastAPI and Uvicorn
-RUN pip install fastapi uvicorn pytest
+RUN pip install fastapi uvicorn pytest httpx
 
 # Copy the FastAPI app into the container
 COPY main.py .
