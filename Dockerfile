@@ -7,9 +7,9 @@ WORKDIR /app
 # Install FastAPI and Uvicorn
 RUN pip install fastapi uvicorn pytest httpx
 
-# Copy the FastAPI app into the container
+# Copy the entire app directory structure
+COPY app/ ./app/
 COPY main.py .
-COPY recipe.py .
 COPY test_api.py .
 
 # Expose port 80 for HTTP traffic
