@@ -16,7 +16,7 @@ async def get_recipes():
 
 @app.get("/recipes/search", status_code=200)
 async def search_recipes(q: Optional[str] = None):
-    if not q or q == "":
+    if not q:
         return []
     results=[]
     q = q.lower()
@@ -39,7 +39,7 @@ async def get_recipe(recipe_id: int):
 async def create_recipe(recipe: RecipeCreate):
     global next_id
     next_id += 1
-    new_recipe = Recipe(id=next_id, **recipe.dict())
+    new_recipe = Recipe(id=next_id, **recipe.model_dump())
     recipes.append(new_recipe)
     return new_recipe
 

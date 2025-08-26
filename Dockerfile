@@ -10,6 +10,7 @@ RUN pip install fastapi uvicorn
 # Copy the FastAPI app into the container
 COPY main.py .
 COPY recipe.py .
+COPY test.py .
 
 # Expose port 80 for HTTP traffic
 EXPOSE 80
