@@ -10,6 +10,7 @@ RUN pip install fastapi uvicorn pytest httpx
 # Copy the entire app directory structure
 COPY app/ ./app/
 COPY main.py .
+COPY test_api.py .
 
 # Expose port 80 for HTTP traffic
 EXPOSE 80
