@@ -1,22 +1,10 @@
-from typing import List, Literal
-from pydantic import BaseModel
+from typing import List
+from app.models.recipe import Recipe
+import uuid
 
-class RecipeCreate(BaseModel):
-    title: str
-    ingredients: List[str]
-    steps: List[str]
-    prepTime: str
-    cookTime: str
-    difficulty: str
-    cuisine: str
-
-class Recipe(RecipeCreate):
-    id: int   # server adds this
-    
-# In-memory store (list of Recipe)
 recipes: List[Recipe] = [
     Recipe(
-        id=1,
+        id=uuid.uuid4(),
         title="Spaghetti Carbonara",
         ingredients=["pasta", "eggs", "bacon", "cheese"],
         steps=["Cook pasta", "Mix eggs", "Combine all"],
@@ -26,7 +14,7 @@ recipes: List[Recipe] = [
         cuisine="Italian",
     ),
     Recipe(
-        id=2,
+        id=uuid.uuid4(),
         title="Pancakes",
         ingredients=["flour", "milk", "egg", "baking powder", "sugar"],
         steps=["Mix dry", "Add wet", "Cook on griddle"],
